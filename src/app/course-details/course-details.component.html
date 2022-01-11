@@ -1,1 +1,53 @@
-<p>course-details works!</p>
+<div class="card text-left">
+  <div class="card-header">
+    <div class="card-title"><h3>{{courseItem.title}}</h3></div>
+    <div style="color: grey;">{{courseItem.description}}</div>
+    <div style="padding-top: 20px; color: orange;">{{courseItem.author}}</div>
+    <div>
+      <div *ngFor="let item of courseItem.tags" style="display: inline-block; padding-right: 5px;">
+        <div>{{item}}</div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-7">
+        <h5 class="card-title">Course Details</h5>
+        <p class="card-text">{{courseItem.details}}</p>
+      </div>
+      <div class="col-md-5">
+
+      </div>
+    </div>
+  </div>
+  <div class="card-footer">
+    <div>
+      <h3 style="display: inline-block; padding-right: 5px;">
+        <div>
+          <div *ngIf="courseItem.discounted_price !== null; else price">{{courseItem.discounted_price | currency:'INR'}}</div>
+          <ng-template #price>
+            {{courseItem.actual_price | currency:'INR'}}
+          </ng-template>
+        </div>
+        <div>
+          <div *ngIf="courseItem.discounted_price !== null; else blank" style="text-decoration: line-through;">{{courseItem.actual_price | currency:'INR'}}</div>
+          <ng-template #blank>
+               -
+          </ng-template>
+        </div>
+      </h3>
+      <div style="align-content: center;">
+        <div style="display: inline-block; padding-right: 5px;">
+          <button (click)="addToCart(courseItem.id)">
+          Add To Cart
+          </button>
+        </div>
+        <div style="display: inline-block; padding-right: 5px;">
+          <button (click)="addToWishList(courseItem.id)">
+            Add To Wishlist
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

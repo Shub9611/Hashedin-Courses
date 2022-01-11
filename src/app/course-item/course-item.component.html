@@ -23,8 +23,6 @@
     </div>
   <div *ngIf="!fromCart">
     <button (click)="addToCart(items.id)">
-      <a routerLink="/addToCart"
-    routerLinkActive="active"></a>
     Add To Cart
     </button>
   </div>
@@ -42,8 +40,7 @@
     </button>
   </div>
   <div *ngIf="!fromCart">
-    <a routerLink="/courseDetails"
-    routerLinkActive="active">
+    <a [routerLink]="['/course-details', items.id]">
     <i class="bi bi-chevron-right"></i>
   </a>
   </div>

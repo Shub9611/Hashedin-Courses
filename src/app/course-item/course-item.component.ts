@@ -22,7 +22,6 @@ export class CourseItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.presentInWishList = this.dlService.getWishlist().findIndex(item => item.id === this.items.id) !== -1;
-    console.log(this.fromCart);
   }
 
   onTrashClick(id){
