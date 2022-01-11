@@ -1,0 +1,52 @@
+<div class="card">
+  <div class="grid-container" [id]="items.id">
+    <div>
+      {{items.title}}
+      <div class="grid-tags" *ngIf="!fromCart">
+        <span *ngFor="let item of items.tags">{{item}}</span>
+      </div>
+    </div>
+    <div *ngIf="!fromCart">
+      {{items.author}}
+    </div>
+    <div>
+      <div *ngIf="items.discounted_price !== null; else price">{{items.discounted_price | currency:'INR'}}</div>
+      <ng-template #price>
+        {{items.actual_price | currency:'INR'}}
+      </ng-template>
+    </div>
+    <div>
+      <div *ngIf="items.discounted_price !== null; else blank" style="text-decoration: line-through;">{{items.actual_price | currency:'INR'}}</div>
+      <ng-template #blank>
+           -
+      </ng-template>
+    </div>
+  <div *ngIf="!fromCart">
+    <button (click)="addToCart(items.id)">
+      <a routerLink="/addToCart"
+    routerLinkActive="active"></a>
+    Add To Cart
+    </button>
+  </div>
+  <div *ngIf="!fromCart">
+    <button *ngIf="inWishListScreen" (click)="onTrashClick(items.id)">
+      <i class="bi bi-trash"></i>
+    </button>
+    <button *ngIf="!inWishListScreen" (click)="addToWishList(items.id)">
+      <div *ngIf="presentInWishList; else wish">
+        <i class="bi bi-star-fill"></i>
+      </div>
+      <ng-template #wish>
+        <i class="bi bi-star"></i>
+      </ng-template>
+    </button>
+  </div>
+  <div *ngIf="!fromCart">
+    <a routerLink="/courseDetails"
+    routerLinkActive="active">
+    <i class="bi bi-chevron-right"></i>
+  </a>
+  </div>
+  </div>
+</div>
+

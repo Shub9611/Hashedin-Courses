@@ -1,0 +1,20 @@
+<div class="card">
+  <div class="header card"><h3>Your Cart Details</h3></div>
+  <div class="summary card">
+    <div class="summary-item" *ngFor="let item of cartCourses">
+      <app-course-item [fromCart]="fromCart" [items]="item"></app-course-item>
+    </div>
+    <!-- <div class="summary-item"><span class="text">Discount</span><span class="price">$0</span></div>
+    <div class="summary-item"><span class="text">Shipping</span><span class="price">$0</span></div>
+    <div class="summary-item"><span class="text">Total</span><span class="price">$360</span></div> -->
+  </div>
+  <div class="footer card grid-container">
+      <div>
+        <h6>Total Cart Value</h6>
+        <p></p>
+      </div>
+      <div *ngIf="cartCourses.length > 0">
+        <button type="button" class="btn btn-primary btn-sm btn-block" (click)="onCheckout()">Checkout</button>
+      </div>
+    </div>
+</div>

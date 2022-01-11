@@ -1,0 +1,10 @@
+<div class="container">
+  <h6>My Wishlist</h6>
+  <div class="list-group">
+    <app-course-item
+    [items]="item"
+    [inWishListScreen]="true"
+    *ngFor="let item of wishLstCourses">
+    </app-course-item>
+  </div>
+</div>

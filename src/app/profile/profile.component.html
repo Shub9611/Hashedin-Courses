@@ -1,0 +1,130 @@
+<div class="row card">
+  <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+    <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="DisplayName">Display Name</label>
+        <input
+          type="text"
+          id="DisplayName"
+          formControlName="DisplayName"
+          class="form-control"
+          placeholder="Display Name"
+          [value]="profile.DisplayName">
+        <span
+          *ngIf="profileForm.get('DisplayName').invalid && profileForm.get('DisplayName').touched"
+          class="help-block">
+          <small *ngIf="profileForm.get('DisplayName').errors['required']">This field is required!</small>
+          </span>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="FirstName">First Name</label>
+        <input
+          type="text"
+          id="FirstName"
+          formControlName="FirstName"
+          class="form-control"
+          placeholder="First Name"
+          [value]="profile.FirstName">
+        <span
+          *ngIf="profileForm.get('FirstName').invalid && profileForm.get('FirstName').touched"
+          class="help-block">
+          <small *ngIf="profileForm.get('FirstName').errors['required']">This field is required!</small>
+          </span>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="LastName">Last Name</label>
+        <input
+          type="text"
+          id="LastName"
+          formControlName="LastName"
+          class="form-control"
+          placeholder="Last Name"
+          [value]="profile.LastName">
+      </div>
+    </div>
+      <div class="form-group col-md-8">
+        <label for="AboutYourself">About Yourself</label>
+        <input
+          type="text"
+          id="AboutYourself"
+          formControlName="AboutYourself"
+          class="form-control"
+          [value]="profile.AboutYourself">
+        <span
+          *ngIf="profileForm.get('AboutYourself').invalid && profileForm.get('AboutYourself').touched"
+          class="help-block">
+          <small *ngIf="profileForm.get('AboutYourself').hasError('maxlength')">Please enter text less than 100</small>
+        </span>
+      </div>
+
+      <label>Your area of interest
+        <div class="form-group" *ngFor="let item of interests">
+          <label class = "form-check-label" for="AreaOfInterest">
+            <input class = "form-check-input" type="checkbox" [value]="item"
+            formArrayName="AreaOfInterest">
+            {{item}}
+          </label>
+        </div>
+      </label>
+
+      <label>Are you a student or professional?
+        <div class="radio" *ngFor="let des of designation">
+          <label>
+            <input
+              type="radio"
+              formControlName="Designation"
+              [value]="des">
+              {{ des }}
+          </label>
+        </div>
+      </label>
+
+      <div *ngIf="profileForm.value.Designation === 'professional'" formGroupName = "ProfessionalQuestionnaire" class="card">
+        <label>How much of experience you have?
+          <div *ngFor="let exp of experience">
+            <label for="Experience">
+              <input
+              type="radio"
+              formControlName="Experience"
+              [value]="exp">
+            {{exp}}
+          </label>
+          </div>
+        </label>
+
+        <label>What is your expertise?
+          <div *ngFor="let item of expertise">
+            <label for="Expertise"><input
+              type="radio"
+              formControlName="Expertise"
+              [value]="item">
+              {{item}}
+            </label>
+          </div>
+        </label>
+
+          <div class="form-group">
+            <label for="Role">Mention your role</label>
+            <input type="text" id="Role" formControlName="Role" class="form-control" placeholder="Enter Role">
+            <span
+              *ngIf="profileForm.get('ProfessionalQuestionnaire.Role').invalid && profileForm.get('ProfessionalQuestionnaire.Role').touched"
+              class="help-block">
+              <small *ngIf="profileForm.get('ProfessionalQuestionnaire.Role').hasError('maxlength')">Please enter text less than
+                200</small>
+            </span>
+          </div>
+
+      </div>
+
+
+      <button [disabled]="profileForm.invalid" class="btn btn-primary" type="submit">Save</button>
+
+    </form>
+
+  </div>
+</div>
