@@ -14,6 +14,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { WishlistComponent } from './wishlist/wishlist.component';
 import { CartComponent } from './cart/cart.component';
 import { NgxPaginationModule } from 'ngx-pagination';
+import { CourseDetailsComponent } from './course-details/course-details.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { NgxPaginationModule } from 'ngx-pagination';
     CourseItemComponent,
     DashboardComponent,
     WishlistComponent,
-    CartComponent
+    CartComponent,
+    CourseDetailsComponent
   ],
   imports: [
     BrowserModule,

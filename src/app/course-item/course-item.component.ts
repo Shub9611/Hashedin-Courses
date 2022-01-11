@@ -38,6 +38,9 @@ export class CourseItemComponent implements OnInit {
 
   addToCart(id){
     if(this.items.id === id){
+      if(this.inWishListScreen){
+        this.dlService.deleteFromWishlist(id);
+      }
       this.dlService.addToCart(Object.assign({}, this.items));
     }
 
