@@ -20,7 +20,7 @@ export class ProfileComponent implements OnInit {
 
   constructor(dataLayerService : DataLayerService) {
     this.dataLayerService = dataLayerService;
-    this.profile = this.getWishList();
+    this.profile = this.getProfile();
    }
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class ProfileComponent implements OnInit {
       this.dataLayerService.updateProfile(formValues);
     }
 
-    getWishList(){
+    getProfile(){
       return this.dataLayerService.getProfile();
     }
 
