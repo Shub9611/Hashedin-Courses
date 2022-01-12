@@ -9,14 +9,14 @@
     <div *ngIf="!fromCart">
       {{items.author}}
     </div>
-    <div>
-      <div *ngIf="items.discounted_price !== null; else price">{{items.discounted_price | currency:'INR'}}</div>
-      <ng-template #price>
+    <div style="white-space: nowrap;">
+      <div style="display: inline-block;" *ngIf="items.discounted_price !== null; else price">{{items.discounted_price | currency:'INR'}}</div>
+      <ng-template style="display: inline-block;" #price>
         {{items.actual_price | currency:'INR'}}
       </ng-template>
     </div>
-    <div>
-      <div *ngIf="items.discounted_price !== null; else blank" style="text-decoration: line-through;">{{items.actual_price | currency:'INR'}}</div>
+    <div style="white-space: nowrap;">
+      <div style="white-space: nowrap;" *ngIf="items.discounted_price !== null; else blank" style="text-decoration: line-through;">{{items.actual_price | currency:'INR'}}</div>
       <ng-template #blank>
            -
       </ng-template>
